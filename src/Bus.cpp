@@ -1,4 +1,5 @@
 #include "Bus.h"
+#include <iostream>
 
 Bus::Bus()
 {
@@ -13,31 +14,31 @@ Bus::~Bus()
 uint8_t Bus::cpuRead(uint16_t addr)
 {
 	uint8_t data = 0;
-	if (addr >= 0x0000 && addr <= 0x7FFF) // RAM
+	if (addr >= 0x0000 && addr <= 0x3FFF) // RAM
 	{
 		data = RAM[addr];
 	}
-	else if (addr >= 0x8000 && addr <= 0xBFFF) // Screen
+	else if (addr >= 0x4000 && addr <= 0x7FFF) // Screen
 	{
 	}
-	else if (addr >= 0xC000 && addr <= 0xFFFF)
+	else if (addr >= 0x8000 && addr <= 0xFFFF)
 	{
-		data = ROM[addr];
+		data = ROM[addr % 0x8000];
 	}
 	return data;
 }
 
 void Bus::cpuWrite(uint16_t addr, uint8_t data)
 {
-	if (addr >= 0x0000 && addr <= 0x7FFF)
+	if (addr >= 0x0000 && addr <= 0x3FFF)
 	{
 		RAM[addr] = data;
 	}
-	else if (addr >= 0x8000 && addr <= 0xBFFF)
+	else if (addr >= 0x4000 && addr <= 0x7FFF)
 	{
 		screen.write((addr % 0x4000), data);	
 	}
-	else if (addr >= 0xC000 && addr <= 0xFFFF)
+	else if (addr >= 0x8000 && addr <= 0xFFFF)
 	{
 	}
 }

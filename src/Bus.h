@@ -16,6 +16,7 @@ class Bus
 public:
 	Bus();
 	~Bus();
+	std::vector<uint8_t> ROM;
 
 public:
 	PandesalCPU cpu;
@@ -28,6 +29,5 @@ public:
 	uint8_t cpuRead(uint16_t addr);
 	void cpuWrite(uint16_t addr, uint8_t data);
     uint8_t RAM[16384];
-	std::vector<uint8_t> ROM;
 };
 
