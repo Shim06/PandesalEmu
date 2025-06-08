@@ -23,7 +23,10 @@ uint8_t Bus::cpuRead(uint16_t addr)
 	}
 	else if (addr >= 0x8000 && addr <= 0xFFFF)
 	{
-		data = ROM[addr % 0x8000];
+		size_t bank_offset = bank_select * 0x8000;
+		size_t rom_index = bank_offset + (addr - 0x8000);
+		if (rom_index < ROM.size()) data = ROM[rom_index];
+		else data = 0x00;
 	}
 	return data;
 }
@@ -33,6 +36,7 @@ void Bus::cpuWrite(uint16_t addr, uint8_t data)
 	if (addr >= 0x0000 && addr <= 0x3FFF)
 	{
 		RAM[addr] = data;
+		if (addr == 0x3FFF) bank_select = data;
 	}
 	else if (addr >= 0x4000 && addr <= 0x7FFF)
 	{

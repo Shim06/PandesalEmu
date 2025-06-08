@@ -29,5 +29,6 @@ public:
 	uint8_t cpuRead(uint16_t addr);
 	void cpuWrite(uint16_t addr, uint8_t data);
     uint8_t RAM[16384];
+	uint8_t bank_select = 0;
 };
 
