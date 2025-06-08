@@ -15,8 +15,6 @@ SDL_Texture* frame = nullptr;
 uint8_t* ptr_frame_buffer = nullptr;
 
 double CPU_freq = 0;
-Uint64 last_time = SDL_GetPerformanceCounter();
-double perf_freq = double(SDL_GetPerformanceFrequency());
 
 void handleSDLEvents(SDL_Window*& window);
 bool initSDL(SDL_Window*& window, SDL_Renderer*& renderer);
