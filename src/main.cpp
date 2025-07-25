@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 	if (argc == 1)
 	{
 		fprintf(stderr, "Error: No arguments provided.\n");
-		fprintf(stderr, "Usage: %s <frequency Hz> <RAM file> <ROM file>\n", argv[0]);
+		fprintf(stderr, "Usage: %s -freq <frequency Hz> -ram <RAM file> -rom <ROM file>\n", argv[0]);
 		return 1;
 	}
 
@@ -55,7 +55,6 @@ int main(int argc, char* argv[])
 	SDL_Renderer* renderer = nullptr;
 	if (!initSDL(window, renderer)) return 1;
 	
-	const double CPU_HZ = 500000;  // 1 MHz
 	double cycle_accumulator = 0.0;
 
 	ptr_frame_buffer = bus.screen.frame_buffer.get();
@@ -67,7 +66,7 @@ int main(int argc, char* argv[])
 		double delta_sec = double(now - last_time) / perf_freq;
 		last_time = now;
 
-		cycle_accumulator += delta_sec * CPU_HZ;
+		cycle_accumulator += delta_sec * CPU_freq;
 		int cycles_to_run = int(cycle_accumulator);
 		cycle_accumulator -= cycles_to_run;
 		for (int i = 0; i < cycles_to_run; i++)
