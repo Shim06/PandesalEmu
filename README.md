@@ -3,8 +3,6 @@
 PandesalEmu is an emulator for the [Pandesal CPU](https://github.com/Shim06/PandesalCPU), an 8-bit processor inspired by the MOS 6502.  
 This is a CLI-based program that will execute Pandesal binary programs.
 
-PandesalEmu is available on GitHub under the [MIT License](https://github.com/Shim06/PandesalEmu/blob/main/LICENSE).
-
 ---
 
 ## Usage
